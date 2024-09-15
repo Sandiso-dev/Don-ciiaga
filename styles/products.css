@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     gap: 100px;
-    padding: 4rem;
+    padding: 1rem;
 }
 
 .products .product {
@@ -37,4 +37,11 @@
  border-radius: 6px;
  cursor: pointer;
  transition: 3sm all ease-in-out;
+}
+
+@media screen and (max-width: 600px) {
+    .products .product img{
+        width: 200px;
+        height: 200px;
+    }
 }

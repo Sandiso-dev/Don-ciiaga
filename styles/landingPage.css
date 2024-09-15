@@ -9,10 +9,10 @@ body {
     height: 100vh;
     text-decoration: none;
     position: relative;
-    font-family: "Roboto", sans-serif;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    transition: 3ms all ease-in-out;
 }
 
 html::-webkit-scrollbar{
@@ -28,12 +28,18 @@ nav {
 }
 
 nav .logo {
-    margin-right: 200px;
     font-size: 25px;
+    position: absolute;
+    left: 20px;
 }
 
 nav .cartLog {
-    margin-left: 120px;
+    margin-left: 620px;
+}
+
+.cartLog > svg{
+    height: 30px;
+    cursor: pointer;
 }
 
 .overLay {
@@ -124,6 +130,10 @@ nav .cartLog {
     width: 95%;
     margin-left: 2.3%;
     margin-top: 10px;
+}
+
+.options:hover{
+   border-radius: 49px;
 }
 .options div{
     border-right: 2px solid black;

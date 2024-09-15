@@ -1,7 +1,16 @@
-import products from "./products";
+import products  from './products.js';
 
+let cartItems = [];
+
+//TYPING EFFECT QUERIES
 const div = document.querySelector('.slogan'); 
 const text = `Where future meets fashion...`;
+
+//CLOSE AND OPEN CART QUERIES
+const cartBtn = document.querySelector('.cartBtn');
+const backBtn = document.querySelector('.backBtn');
+const productContainer = document.querySelector('.products');
+const shipping = document.querySelector('.shipping');
 
 const typingEffect = (element, text, idx = 0) => {
     if (idx === 0) {
@@ -21,7 +30,6 @@ const typingEffect = (element, text, idx = 0) => {
 typingEffect(div, text);
 
 const welcomingVideo = () => {
-    // Select existing overlay and video elements
     const overlay = document.querySelector('.overLay');
     const landingOverlay = document.querySelector('.landingOverlay');
     const logbg = document.querySelector('.bglog');
@@ -32,22 +40,151 @@ const welcomingVideo = () => {
         overlay.style.display = "block";
         logbg.style.display = "block";
         landingOverlay.style.display = "none"
+        productContainer.style.display = "none"
         bod.style.overflow = "hidden";
     }, 500); // Small delay for smooth appearance
 
-    // Hide the overlay and video after 20 seconds
+    // Hide the overlay and video after 8 seconds
     setTimeout(() => {
         overlay.style.display = "none";
         logbg.style.display = "none";
-        landingOverlay.style.display = "block"
+        landingOverlay.style.display = "block";
+        productContainer.style.display = "flex";
         bod.style.overflow = "scroll";
-
-        
-     // 20 seconds in milliseconds (20000ms)
-    }, 20000); 
+    }, 8000); 
 };
 
-document.addEventListener('DOMContentLoaded', welcomingVideo);
+
+//CLOSING AND OPENING CART FUNCTIONS
+cartBtn.addEventListener('click', () => {
+    shipping.style.display = "grid";
+    productContainer.style.display = "none";
+
+}); 
+backBtn.addEventListener('click', () => {
+    shipping.style.display = "none";
+    productContainer.style.display = "flex";
+});
+
+//DISPLAY ITEMS DYNAMIC FROM THE DATA - done
+//ADD ITEMS TO CART
+//DISPLAY ITEMS TO CART 
+//FILTERING FEATURE - done 
+//SAVE ITEMS ON CART IF PAGE REFRESHES OR USER LEAVES THE SITE FOR A MOMENT 
+//DELETE ITEMS FROM CART 
+//INCREASE OR DECREASE QUANTITY ALONG WITH THE PRICE OF THE PRODUCT 
+//CALCULATE TOTAL
+
+//USING THIS FUNCTION TO SHUFFLE MY PRODUCTS IN THE HOME PAGE SINCE MY DATA IS SORTED TO RELEVANCE
+//BY USING THE SORT METHOD WITH A RANDOM COMPARISON.
+const shuffleProducts = (products) => {
+    return products.sort(() => Math.random() - 0.5);
+};
 
 
-//RENDER ITEMS DYNAMIC FROM THE DATA I HAVE BUILT SO THAT I CAN ALSO BE ABLE TO CREAT A FILTER FUNCTION
+const renderProducts = () => {
+    const landingProductContainer = document.querySelector('.products');
+    landingProductContainer.innerHTML = '';
+
+    const shuffledProds = shuffleProducts(products)
+
+  for (const[idx , item] of Object.entries(shuffledProds)){
+    const productDiv = document.createElement('div');
+    productDiv.className = 'product';
+
+    const prodImg = document.createElement('img');
+    prodImg.src = item.img
+
+    const prodPrice = document.createElement('p');
+    prodPrice.textContent = item.price; 
+    
+    const prodBtn = document.createElement('button');
+    prodBtn.classList = 'addToCart';
+    prodBtn.textContent = 'Add To Cart'; 
+    prodBtn.onclick = () => addToCartFunc(idx);
+
+    productDiv.appendChild(prodImg)
+    productDiv.appendChild(prodPrice);
+    productDiv.appendChild(prodBtn);
+
+    landingProductContainer.appendChild(productDiv);
+  
+    };
+};
+
+
+//RENDER THESE PRODUCTS BASED ON WHAT THE USER CHOOSE USING THE FILTER METHOD ALONG WITH THE CARTEGORY PAIR I CREATED ON MY DATA TO MANIPULATE 
+//THE ARRAY ACCORDING TO WHAT THE USER WANTS
+const filter = (category) => {
+    const filteredProducts = products.filter(product => product.category === category);
+    renderFilteredProducts(filteredProducts);  // Show only filtered products
+};
+
+const renderFilteredProducts = (filteredProducts) => {
+    const landingProductContainer = document.querySelector('.products');
+    landingProductContainer.innerHTML = '';  // Clear current products
+
+    for (const item of filteredProducts) {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product';
+
+        const prodImg = document.createElement('img');
+        prodImg.src = item.img;
+
+        const prodPrice = document.createElement('p');
+        prodPrice.textContent = item.price;
+
+        const prodBtn = document.createElement('button');
+        prodBtn.classList = 'addToCart';
+        prodBtn.textContent = 'Add To Cart';
+
+        productDiv.appendChild(prodImg);
+        productDiv.appendChild(prodPrice);
+        productDiv.appendChild(prodBtn);
+
+        landingProductContainer.appendChild(productDiv);
+    }
+};
+
+
+document.querySelectorAll('.options div').forEach(option => {
+    option.addEventListener('click', (e) => {
+        const selectedCategory = e.target.getAttribute('data-category');
+         // Filter products based on the clicked category
+        filter(selectedCategory); 
+    });
+});
+
+const addToCartFunc = (idx) => {
+
+    //check if item exists in the cart 
+    const existingCartItem = cartItems.find(item => item.id === idx);
+
+    if(existingCartItem){
+        existingCartItem.quantity +=1;
+    }else{
+        cartItems.push({
+            id:idx, 
+            quantity: 1
+        });
+    }
+
+    renderCartItems()
+
+}
+
+const renderCartItems = () => {
+    console.log("HERE ARE THE CART ITEMS:"); 
+
+    cartItems.forEach(item => {
+        console.log(  `id:${item.id}, price:${item.price}`)
+    }
+    )
+}
+document.addEventListener('DOMContentLoaded', () => {
+welcomingVideo();
+renderProducts();
+}
+);
+
+
