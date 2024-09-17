@@ -325,7 +325,7 @@ const displayAmountCart = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-welcomingVideo();
+//welcomingVideo();
 renderProducts();
 displayAmountCart();
 loadItemsCartItems();
