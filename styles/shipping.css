@@ -47,7 +47,7 @@
 }
 
 .item > .itemDescription{
-    width: 40%;
+    width: 56%;
     height: 10vh;
     margin-top: 25%;
 }
@@ -74,6 +74,10 @@
 .item > .itemDescription > p{
   margin-bottom: 10px ;
   margin-left: 10px;
+}
+
+.itemDescription > .quantity{
+    margin-top: -100px;
 }
 
 .userDetails{
@@ -171,13 +175,31 @@
         margin-bottom: 10px;
     }
 
+    .item{
+        border: none;
+    }
+
+    .item img{
+        margin-right: 25px;
+        height: 200px;
+        width: 200px;
+    }
+
    .itemDescription .add {
         margin-bottom: 7px;
-        width: 40px;
+        width: 70px;
     }
 
     .itemDescription .minus {
         margin-bottom: 7px;
-        width: 40px;
+        width: 70px;
+    }
+
+    .itemDescription > .quantity{
+        margin-top: -50px;
+    }
+
+    .itemDescription {
+        width: 100px;
     }
 }

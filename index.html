@@ -27,7 +27,7 @@
         <source src="./assets/landingVids/logBg.mp4" type="video/mp4">
     </video>
 
-    <nav>
+    <nav class="nav">
         <div class="logo">
             <h1>Don. <span class="ciagaspan">ciiaga</span></h1>
         </div>
@@ -35,7 +35,8 @@
         <div class="cartLog">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 cartBtn">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-            </svg>              
+            </svg>  
+            <span class="quantity"></span>            
         </div>
     </nav>
 
@@ -54,44 +55,7 @@
  <!--SHIPPING SECTIONS-->
     <div class="shipping">
         <div class="upper">
-            <div class="itemsContainer">
-
-                <div class="item">
-                    <img src="/assets/ciaga-tshirts/t4.png" alt="imageImage">
-
-                    <div class="itemDescription">
-                        <p>Quantity <span>:1</span></p>
-                        
-                        <button class="add">+</button>
-                        <button class="minus">-</button>
-                        <button class="delete">Delete</button>
-                    </div>
-                </div>
-
-                <div class="item">  
-                    <img src="/assets/ciaga-tshirts/t4.png" alt="imageImage">
-
-                    <div class="itemDescription">
-                        <p>Quantity <span>:1</span></p>
-                        
-                        <button class="add">+</button>
-                        <button class="minus">-</button>
-                        <button class="delete">Delete</button>
-                    </div>
-                </div>
-
-                <div class="item">  
-                    <img src="/assets/ciaga-tshirts/t4.png" alt="imageImage">
-
-                    <div class="itemDescription">
-                        <p>Quantity <span>:1</span></p>
-                        
-                        <button class="add">+</button>
-                        <button class="minus">-</button>
-                        <button class="delete">Delete</button>
-                    </div>
-                </div>
-            </div>
+            <div class="itemsContainer"> </div>
 
             <div class="userDetails">
                 <label for="name">Full name</label>
@@ -107,7 +71,7 @@
         <div class="lower">
             <div class="totalContainer">
                 <p>Total</p>
-                <p class="totalAmount">R 2000</p>
+                <p class="totalAmount"></p>
             </div>
 
             <div class="shippingTerms">
@@ -127,5 +91,6 @@
     </div>
 
     </div>
+    
 </body>
 </html>
